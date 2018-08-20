@@ -1,5 +1,9 @@
 package model;
 
+import exceptions.AllergyException;
+import exceptions.MessyError;
+import exceptions.NotHungry;
+
 import java.util.List;
 
 public class Keeper {
@@ -10,14 +14,16 @@ public class Keeper {
         animalsToFeed = animals;
     }
 
-    public void feed() {
+    public void feed() throws NotHungry, AllergyException {
         for (Animal animal : animalsToFeed) {
-            if (!animal.isHungry()) {
-                int eatenTimes = animal.eat();
-                System.out.println("Animal has been fed "+ eatenTimes);
-            }
+            int eatenTimes = animal.eat();
+            System.out.println("Animal has been fed "+ eatenTimes);
         }
+        throw new MessyError();
     }
+
+
+
 
 
 }
